@@ -26,7 +26,7 @@ I'm sure there's a way to make a performant web app with some shadow dom tricker
 this again adds a lot of complexity for the sole benefit of allowing reusable chunks of
 code and HTML.
 
-From a software development perspective, we really only need a couple things to be
+From a software development perspective, we really only need a couple of things to be
 really productive:
 
 1. Some way to reuse modular pieces of the application.

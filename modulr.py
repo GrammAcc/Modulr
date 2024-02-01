@@ -39,7 +39,7 @@ for root, dirs, files in Path("src").walk(on_error=print):
         with fp.open("r") as html_file:
             print(f"Parsing {str_filepath}...")
             for line in html_file.readlines():
-                if line.lstrip().startswith("<!-- static-component"):
+                if line.lstrip().startswith("<!-- modulr-component"):
                     output_lines.append(parse_component_identifier(line))
                 else:
                     output_lines.append(line)
