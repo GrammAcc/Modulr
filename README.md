@@ -58,9 +58,18 @@ To install, simply download the modulr.py script into your project's root direct
 
 Run the script with Python: `python modulr.py`.
 
+Modulr requires Python >= 3.12 because of the use of `Path.walk`. I plan to eventually
+package Modulr as a standalone commandline app, but for now, you will need Python 3.12
+installed in order to run the script.
+
+If your system doesn't come with 3.12, the easiest way to get a different version
+installed is with either
+[Hatch](https://hatch.pypa.io/latest/install/) or
+[Pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation).
+
 ## Roadmap
 
-- Add automatic JS/TS component script detection so we no longer have to manually include component script sources in the source HTML file.
-- Add arguments for source, output, and component dirs to make the project structure configurable.
-- Make the script a standalone commandline application.
+- [ ] Add automatic JS/TS and CSS component script detection so we no longer have to manually include component script sources in the source HTML file.
+- [ ] Add arguments for source, output, and component dirs to make the project structure configurable.
+- [ ] Package the script as a standalone commandline application.
   - This requires making the script path-independent so that it operates on the CWD regarless of where the executable is located.
