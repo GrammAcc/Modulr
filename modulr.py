@@ -3,6 +3,15 @@ if __name__ != "__main__":
 
 from pathlib import Path
 
+# TODO: Replace this with argparse
+import sys
+project_root = Path(".")
+
+try:
+    project_root = Path(sys.argv[1])
+except IndexError:
+    pass
+
 
 def getindent(line: str) -> str:
     """Return the indentation of `line` as a string of whitespace."""
@@ -10,7 +19,7 @@ def getindent(line: str) -> str:
     return line.split("<")[0]
 
 
-components_dir = Path("src/components")
+components_dir = project_root / "src/components"
 
 
 def parse_component_identifier(line: str) -> str:
@@ -26,14 +35,15 @@ def parse_component_identifier(line: str) -> str:
     return "".join(output_html)
 
 
-for root, dirs, files in Path("src").walk(on_error=print):
+for root, dirs, files in (project_root / "src").walk(on_error=print):
     if "components" in dirs:
         dirs.remove("components")
     filepaths = [root / file for file in files if file.endswith(".html")]
     for fp in filepaths:
-        str_dirpath = str(root)
+        str_dirpath = str(root).removeprefix(str(project_root)).removeprefix("/")
+        print(str_dirpath)
         str_filepath = str(fp)
-        output_dir = Path("site") / str_dirpath.removeprefix("src").removeprefix("/")
+        output_dir = project_root / "site" / str_dirpath.removeprefix("src").removeprefix("/")
         output_path = output_dir / fp.name
         output_lines: list[str] = []
         with fp.open("r") as html_file:
