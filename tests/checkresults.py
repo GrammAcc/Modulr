@@ -1,5 +1,11 @@
 #!/bin/python
 
+"""Check the results of running modulr.py on the test directory `testrun_root`.
+
+This code probably works.
+Testing a test runner is hard.
+"""
+
 from pathlib import Path
 
 # TODO: Replace with argparse

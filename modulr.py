@@ -1,3 +1,22 @@
+#!/bin/python
+
+"""Stitch together modular HTML files.
+
+Currently, this script takes a single positional argument, which is
+used as the project root directory.
+
+Once implemented, it will take arguments for the following:
+    - Project Root Directory (string/path)
+    - HTML Source Directory (string/path)
+    - Components Directory (string/path)
+    - Output/Site Directory (string/path)
+    - Flat/Nested Components Directory (bool/flag)
+    - Automatically Include JS/CSS Files (bool/flag)
+
+These arguments will be validated and documented by argparse, but for
+now, they are not implemented yet.
+"""
+
 if __name__ != "__main__":
     raise ImportError("This is a standalone script and should not be imported.")
 
