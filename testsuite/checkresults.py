@@ -1,9 +1,16 @@
 #!/bin/python
 
+"""Check the results of running modulr.py on the test directory `testrun_root`.
+
+This code probably works.
+Testing a test runner is hard.
+"""
+
 from pathlib import Path
 
 # TODO: Replace with argparse
 import sys
+
 testrun_root = Path(sys.argv[1])
 
 output_root = testrun_root / "site"
@@ -17,5 +24,13 @@ for root, dirs, files in output_root.walk(on_error=print):
         expect_fp = expect_dir / fp.name
         with fp.open("r") as output_file:
             with expect_fp.open("r") as expect_file:
-                assert output_file.read() == expect_file.read()
-print("Test Passed: {}".format(testrun_root))
+                try:
+                    assert output_file.read() == expect_file.read()
+                except AssertionError:
+                    print(
+                        f"Test {str(testrun_root).removeprefix('testsuite/')} - {fp}: Fail"
+                    )
+                else:
+                    print(
+                        f"Test {str(testrun_root).removeprefix('testsuite/')} - {fp}: Pass"
+                    )

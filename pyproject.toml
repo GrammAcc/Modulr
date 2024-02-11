@@ -26,9 +26,11 @@ Repository = "https://github.com/GrammAcc/modulr"
 
 [tool.hatch.envs.default]
 python = "3.12"
+dependencies = ["black"]
 
 [tool.hatch.envs.default.scripts]
-test = """for dir in tests/*/; do
-	python modulr.py $dir
-    python tests/checkresults.py $dir
+test = """for dir in testsuite/*/; do
+	python modulr.py $dir 1>/dev/null
+    python testsuite/checkresults.py $dir
 done"""
+format = "black ."
