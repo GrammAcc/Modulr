@@ -55,7 +55,7 @@ def parse_component_identifier(line: str) -> str:
     # Include component css in output.
     if component_prefix.with_suffix(".css").exists():
         style_url = (Path("/components") / component_name).with_suffix(".css")
-        style_tag = f'<link rel="stylesheet" src="{style_url}"></link>'
+        style_tag = f'<link rel="stylesheet" src="{style_url}">'
         output_html.append("".join([indentation, style_tag, "\n"]))
 
     # Include component typescript module in output.
