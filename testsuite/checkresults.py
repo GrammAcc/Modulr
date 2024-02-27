@@ -16,6 +16,8 @@ testrun_root = Path(sys.argv[1])
 output_root = testrun_root / "site"
 expect_root = testrun_root / "expected"
 
+has_failures: bool = False
+
 for root, dirs, files in output_root.walk(on_error=print):
     filepaths = [root / file for file in files]
     for fp in filepaths:
@@ -27,6 +29,7 @@ for root, dirs, files in output_root.walk(on_error=print):
                 try:
                     assert output_file.read() == expect_file.read()
                 except AssertionError:
+                    has_failures = True
                     print(
                         f"Test {str(testrun_root).removeprefix('testsuite/')} - {fp}: Fail"
                     )
@@ -34,3 +37,7 @@ for root, dirs, files in output_root.walk(on_error=print):
                     print(
                         f"Test {str(testrun_root).removeprefix('testsuite/')} - {fp}: Pass"
                     )
+if has_failures:
+    sys.exit(1)
+else:
+    sys.exit(0)
