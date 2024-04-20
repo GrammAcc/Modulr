@@ -69,7 +69,7 @@ installed is with either
 
 ## Roadmap
 
-- [ ] Add automatic JS/TS and CSS component script detection so we no longer have to manually include component script sources in the source HTML file.
+- [x] Add automatic JS/TS and CSS component script detection so we no longer have to manually include component script sources in the source HTML file.
 - [ ] Add arguments for source, output, and component dirs to make the project structure configurable.
 - [ ] Package the script as a standalone commandline application.
   - This requires making the script path-independent so that it operates on the CWD regarless of where the executable is located.
